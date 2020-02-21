@@ -1,0 +1,45 @@
+{% extends 'default/layout.html.twig' %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-lg-12 text-center">
+            <h1 class="mt-5">Города</h1>
+            <p class="lead">Список городов с количеством населениея</p>
+        </div>
+    </div>
+
+
+    {% for world_part_title, cities in items %}
+        <table class="table table-striped">
+            <figcaption>
+                <h3>{{ world_part_title }}</h3>
+            </figcaption>
+            <thead>
+            <tr>
+                <th>М</th>
+                <th>Город / Агломерация</th>
+                <th>Страна</th>
+                <th class="float-right">Население агломерации (т.ч.)</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for city in cities %}
+                <tr>
+                    <td>
+                        {{ loop.index }}
+                    </td>
+                    <td>
+                        {{ city.title }}
+                    </td>
+                    <td>
+                        {{ city.country }}
+
+                    </td>
+                    <td class="float-right">
+                        {{ city.population|number_format(0, '.', ',') }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock content %}
